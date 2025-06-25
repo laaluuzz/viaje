@@ -40,14 +40,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       group.style.marginBottom = '16px';
 
       // Busca la info guardada para este día (por índice)
-      let actividadesGuardadas = '';
+      let infoGuardada = '';
       if (Array.isArray(viaje.itinerario) && viaje.itinerario[idx]) {
-        actividadesGuardadas = viaje.itinerario[idx].actividades || '';
+        infoGuardada = viaje.itinerario[idx].actividades || '';
       }
 
       group.innerHTML = `
-        <label><b>Día ${idx + 1} (${fechaStr}):</b></label><br>
-        <textarea id="info-dia-${idx}" rows="2" style="width:90%" placeholder="Agrega información para este día...">${actividadesGuardadas}</textarea>
+        <label class="dia-label"><b>Día ${idx + 1} (${fechaStr})</b></label><br>
+        <textarea id="info-dia-${idx}" rows="2" style="width:90%" placeholder="Agrega información para este día...">${infoGuardada}</textarea>
       `;
       form.appendChild(group);
     });
@@ -82,6 +82,45 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       }
       alert('¡Itinerario guardado correctamente!');
+    };
+
+    // Agregar botón eliminar
+    const btnEliminar = document.createElement('button');
+    btnEliminar.textContent = 'Eliminar viaje';
+    btnEliminar.type = 'button';
+    btnEliminar.style.background = 'linear-gradient(90deg,#e74c3c 0%,#ffb347 100%)';
+    btnEliminar.style.color = '#fff';
+    btnEliminar.style.border = 'none';
+    btnEliminar.style.borderRadius = '10px';
+    btnEliminar.style.padding = '12px 24px';
+    btnEliminar.style.fontSize = '1.05em';
+    btnEliminar.style.fontWeight = 'bold';
+    btnEliminar.style.cursor = 'pointer';
+    btnEliminar.style.margin = '24px auto 0 auto';
+    btnEliminar.style.display = 'block';
+    btnEliminar.style.boxShadow = '0 2px 12px #e74c3c22';
+    btnEliminar.style.transition = 'background 0.2s, transform 0.1s';
+    btnEliminar.onmouseover = () => btnEliminar.style.background = 'linear-gradient(90deg,#ffb347 0%,#e74c3c 100%)';
+    btnEliminar.onmouseout = () => btnEliminar.style.background = 'linear-gradient(90deg,#e74c3c 0%,#ffb347 100%)';
+    div.appendChild(btnEliminar);
+
+    btnEliminar.onclick = async () => {
+      if (!confirm('¿Estás seguro de que deseas eliminar este viaje? Esta acción no se puede deshacer.')) return;
+      try {
+        const response = await fetch(`${API_BASE_URL}/trips/${viajeId}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await response.json();
+        if (response.ok) {
+          alert('Viaje eliminado correctamente.');
+          window.location.href = 'perfil.html';
+        } else {
+          alert(data.message || 'Error al eliminar el viaje');
+        }
+      } catch (error) {
+        alert('Error de conexión con el servidor');
+      }
     };
 
   } catch (error) {

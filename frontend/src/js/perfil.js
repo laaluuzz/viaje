@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <li>
           <b>${v.nombre}</b>: ${new Date(v.fechaIda).toLocaleDateString()} - ${new Date(v.fechaVuelta).toLocaleDateString()}
           <button onclick="verDetallesViaje('${v._id}')">Ver detalles</button>
+          <button onclick="eliminarViaje('${v._id}')" style="margin-left:10px; background:linear-gradient(90deg,#e74c3c 0%,#ffb347 100%); color:#fff; border:none; border-radius:8px; padding:6px 14px; font-weight:bold; cursor:pointer;">Eliminar</button>
         </li>
       `).join('') + '</ul>';
     }
@@ -40,4 +41,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 window.verDetallesViaje = function(viajeId) {
   localStorage.setItem('viajeId', viajeId);
   window.location.href = 'detalle-viaje.html';
+};
+
+window.eliminarViaje = async function(viajeId) {
+  const token = localStorage.getItem('token');
+  if (!confirm('¿Estás seguro de que deseas eliminar este viaje? Esta acción no se puede deshacer.')) return;
+  try {
+    const response = await fetch(`${API_BASE_URL}/trips/${viajeId}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    const data = await response.json();
+    if (response.ok) {
+      alert('Viaje eliminado correctamente.');
+      window.location.reload();
+    } else {
+      alert(data.message || 'Error al eliminar el viaje');
+    }
+  } catch (error) {
+    alert('Error de conexión con el servidor');
+  }
 }; 
