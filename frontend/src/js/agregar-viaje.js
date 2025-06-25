@@ -12,6 +12,16 @@ document.addEventListener('DOMContentLoaded', () => {
   let fechaFin = null;
 
   function renderCalendario(mes, anio) {
+    // Crear contenedor responsivo para el calendario
+    let calendarioWrapper = document.getElementById('calendario-wrapper');
+    if (!calendarioWrapper) {
+      calendarioWrapper = document.createElement('div');
+      calendarioWrapper.id = 'calendario-wrapper';
+      calendarioWrapper.style.overflowX = 'auto';
+      calendarioWrapper.style.width = '100%';
+      calendarioDiv.parentNode.insertBefore(calendarioWrapper, calendarioDiv);
+      calendarioWrapper.appendChild(calendarioDiv);
+    }
     calendarioDiv.innerHTML = '';
     const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     const diasSemana = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
@@ -150,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const fecha = new Date(anio, mes, d);
       const btn = document.createElement('button');
       btn.textContent = d;
-      btn.style.padding = '8px 0';
+      btn.style.padding = '6px 0';
       btn.style.border = '1px solid #b0c4de';
       btn.style.borderRadius = '6px';
       btn.style.background = '#fff';
@@ -159,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.style.fontWeight = 'bold';
       btn.style.margin = '1px';
       btn.style.color = '#234567';
+      btn.style.fontSize = '1em';
       btn.dataset.fecha = fecha.toISOString().slice(0, 10);
       // Marcar selección
       if (fechaInicio && fechaFin && fecha >= fechaInicio && fecha <= fechaFin) {

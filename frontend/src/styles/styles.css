@@ -188,12 +188,36 @@ button:not(.btn-secundario):not(.btn-eliminar):hover {
 }
 @media (max-width: 700px) {
   section, #detalle-viaje {
-    padding: 12px 2vw 10px 2vw;
+    padding: 8px 1vw 8px 1vw;
     max-width: 100vw;
     min-width: unset;
   }
   form, #itinerario-form {
     max-width: 100vw;
+    padding: 0 2vw;
+    gap: 12px;
+  }
+  .btn-group {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+  button, .btn, .btn-principal, .btn-secundario, .btn-eliminar {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 12px 0;
+    font-size: 1em;
+  }
+  #calendario-visual, #itinerario-form div {
+    padding: 8px 4px 8px 4px !important;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  #calendario-visual {
+    overflow-x: auto;
+    width: 100%;
+    min-width: 0;
   }
 }
 
