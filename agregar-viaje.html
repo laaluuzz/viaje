@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar Viaje</title>
+  <link rel="stylesheet" href="frontend/src/styles/styles.css">
+</head>
+<body>
+  <h1>Agregar nuevo viaje</h1>
+  <form id="fechas-viaje">
+    <div id="calendario-visual"></div>
+    <button type="submit" id="guardar-fechas-btn" disabled>Guardar Fechas</button>
+    <button type="button" id="cancelar-agregar" onclick="window.location.href='perfil.html'">Cancelar</button>
+  </form>
+  <div id="resumen-fechas"></div>
+  <button id="logout-btn" onclick="window.location.href='index.html'">Cerrar sesión</button>
+  <script src="frontend/src/js/agregar-viaje.js"></script>
+</body>
+</html> 

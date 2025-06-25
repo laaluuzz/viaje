@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planificador de Viajes</title>
+  <link rel="stylesheet" href="frontend/src/styles/styles.css">
+</head>
+<body>
+  <h1>Planificador de Viajes</h1>
+  <section id="login-section">
+    <form id="login-form">
+      <label for="usuario">Usuario:</label>
+      <input type="text" id="usuario" required>
+      <br>
+      <label for="contrasena">Contraseña:</label>
+      <input type="password" id="contrasena" required>
+      <br>
+      <button type="submit">Iniciar sesión</button>
+    </form>
+    <div id="login-error" class="error"></div>
+    <div style="text-align:center; margin-top: 16px;">
+      <a href="registro.html" style="display:inline-block; padding:10px 18px; background:linear-gradient(90deg,#66a6ff 0%,#89f7fe 100%); color:#fff; border-radius:8px; text-decoration:none; font-weight:bold; box-shadow:0 2px 8px #66a6ff33; transition:background 0.2s,transform 0.1s;">Crear cuenta</a>
+    </div>
+    <div style="text-align:center; margin-top: 12px;">
+      <button id="listar-usuarios" style="padding:10px 18px; background:linear-gradient(90deg,#ffb347 0%,#ffcc33 100%); color:#fff; border-radius:8px; border:none; font-weight:bold; cursor:pointer; box-shadow:0 2px 8px #ffb34733; transition:background 0.2s,transform 0.1s;">Listar usuarios</button>
+    </div>
+    <div id="usuarios-lista" style="margin-top:18px; text-align:left;"></div>
+  </section>
+  <script src="frontend/src/js/config.js"></script>
+  <script src="frontend/src/js/login.js"></script>
+  <script src="frontend/src/js/register.js"></script>
+  <script src="frontend/src/js/listarUsuarios.js"></script>
+</body>
+</html> 
