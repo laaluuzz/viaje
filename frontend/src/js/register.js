@@ -2,6 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   const registerForm = document.getElementById('register-form');
+  if (!registerForm) return; // Evita error si el formulario no existe
   const registerError = document.getElementById('register-error');
   const registerSuccess = document.getElementById('register-success');
 
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     try {
-      const response = await fetch(`https://user-opyf.onrender.com/api/register`, {
+      const response = await fetch(`${API_BASE_URL}/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

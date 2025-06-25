@@ -9,12 +9,15 @@
 <body>
   <h1>Agregar nuevo viaje</h1>
   <form id="fechas-viaje">
+    <label for="nombre-viaje">Nombre del viaje:</label>
+    <input type="text" id="nombre-viaje" required>
     <div id="calendario-visual"></div>
     <button type="submit" id="guardar-fechas-btn" disabled>Guardar Fechas</button>
     <button type="button" id="cancelar-agregar" onclick="window.location.href='perfil.html'">Cancelar</button>
   </form>
   <div id="resumen-fechas"></div>
   <button id="logout-btn" onclick="window.location.href='index.html'">Cerrar sesión</button>
+  <script src="frontend/src/js/config.js"></script>
   <script src="frontend/src/js/agregar-viaje.js"></script>
 </body>
 </html> 

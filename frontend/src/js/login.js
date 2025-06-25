@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     try {
-      const response = await fetch(`https://user-opyf.onrender.com/api/login`, {
+      const response = await fetch(`${API_BASE_URL}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -24,10 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       const data = await response.json();
       if (response.ok) {
-        // Redirigir o mostrar éxito
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+          console.log('Token guardado en localStorage:', data.token);
+        } else {
+          console.error('No se recibió token en la respuesta:', data);
+        }
         window.location.href = 'perfil.html';
       } else {
         loginError.textContent = data.message || 'Error al iniciar sesión';
+        console.error('Error en login:', data);
       }
     } catch (error) {
       loginError.textContent = 'Error de conexión con el servidor';

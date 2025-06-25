@@ -29,7 +29,13 @@
   </section>
   <script src="frontend/src/js/config.js"></script>
   <script src="frontend/src/js/login.js"></script>
-  <script src="frontend/src/js/register.js"></script>
   <script src="frontend/src/js/listarUsuarios.js"></script>
+  <script>
+    window.verDetallesViaje = function(viajeId) {
+      localStorage.setItem('viajeId', viajeId);
+      window.location.href = 'detalle-viaje.html';
+    };
+  </script>
+  <script src="frontend/src/js/detalle-viaje.js"></script>
 </body>
 </html> 

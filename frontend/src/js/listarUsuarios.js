@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnListar.addEventListener('click', async () => {
       listaUsuarios.textContent = 'Cargando...';
       try {
-        const response = await fetch(`https://user-opyf.onrender.com/api/users`);
+        const response = await fetch(`${API_BASE_URL}/users`);
         if (!response.ok) throw new Error('Error al obtener usuarios');
         const usuarios = await response.json();
         if (usuarios.length === 0) {
